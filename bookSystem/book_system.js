@@ -25,7 +25,8 @@ function addBook() {
             <p><strong>Author Name:</strong> ${book.authorName}</p>
             <p><strong>Book Description: </strong>${book.bookDescription}</p>
             <p><strong>Pages Number: </strong>${book.pagesNumber} page(s)</p>
-            <button onclick="editbook(${index})">Edit</button>`
+            <button onclick="editbook(${index})">Edit</button>
+            <button onclick="deleteBook(${index})">Delete</button>`
         );
         document.getElementById('books').innerHTML = booksDiv.join('');
     }
@@ -36,6 +37,13 @@ function addBook() {
             document.getElementById('bookDescription').value = book.bookDescription;
             document.getElementById('pagesNumber').value = book.pagesNumber;
             books.splice(index, 1);
+        }
+
+        function deleteBook(index) {
+            if (confirm('Are you sure you want to delete this book?')) {
+                books.splice(index, 1); // Remove the book at the specified index, an amount of one(1 argument) elements
+                showbooks(); // Update the books that are displayed & stored after deletion
+            }
         }
 
         function clearInputs() {
