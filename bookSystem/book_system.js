@@ -25,24 +25,39 @@ function addBook() {
             <p><strong>Author Name:</strong> ${book.authorName}</p>
             <p><strong>Book Description: </strong>${book.bookDescription}</p>
             <p><strong>Pages Number: </strong>${book.pagesNumber} page(s)</p>
-            <button onclick="editbook(${index})">Edit</button>
+            <button onclick="editBook(${index})">Edit</button>
             <button onclick="deleteBook(${index})">Delete</button>`
         );
         document.getElementById('books').innerHTML = booksDiv.join('');
     }
         function editBook(index) {
-            const book = books[index];
-            document.getElementById('bookName').value = book.name;
-            document.getElementById('authorName').value = book.authorName;
-            document.getElementById('bookDescription').value = book.bookDescription;
-            document.getElementById('pagesNumber').value = book.pagesNumber;
-            books.splice(index, 1);
+            books[index] = {
+                name: document.getElementById('bookName').value = books[index].name,
+                authorName: document.getElementById('authorName').value = books[index].authorName,
+                bookDescription: document.getElementById('bookDescription').value = books[index].bookDescription,
+                pagesNumber: document.getElementById('pagesNumber').value = books[index].pagesNumber,
+            };
+            //add a temporary save button
+            const saveButton = document.getElementById('saveButton');
+            saveButton.style.display = 'block';
+            saveButton.onclick = () => {
+                books[index] = {
+                    name: document.getElementById('bookName').value,
+                    authorName: document.getElementById('authorName').value,
+                    bookDescription: document.getElementById('bookDescription').value,
+                    pagesNumber: document.getElementById('pagesNumber').value,
+                }
+                clearInputs(); // Clear the input fields after editing
+                saveButton.style.display = 'none'; // Hide the save button after editing
+                showbooks(); // Update the books that are displayed & stored after editing
+            };
+            
         }
-
+        
         function deleteBook(index) {
             if (confirm('Are you sure you want to delete this book?')) {
                 books.splice(index, 1); // Remove the book at the specified index, an amount of one(1 argument) elements
-                showbooks(); // Update the books that are displayed & stored after deletion
+                showbooks(); // Updaste the books that are displayed & stored after deletion
             }
         }
 

@@ -5,6 +5,7 @@
     <title>Book Management System</title>
 </head>
 <body>
+    <div>
     <h1>Book Management System</h1>
     <label for="bookName">Book Name:</label><br>
     <input type="text" id="bookName" placeholder="'Book Name"><br><br>
@@ -14,8 +15,10 @@
     <textarea id="bookDescription" rows="4" placeholder="Book Description"></textarea><br><br>
     <label for="pagesNumber">No. of Pages:</label><br>
     <input type="number" id="pagesNumber" placeholder="Pages Number"><br><br>
+    <button id="saveButton" style="display: none;">Save</button>
     <button onclick="addBook()">Add Book</button>
     <h2>books</h2>
+</div>
     <div id="books">
         <!-- books will be displayed here -->
     </div>
